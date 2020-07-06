@@ -49,21 +49,18 @@ app.get('/weather', (req, res) => {
     const weatherData = require('./data/weather.json');
     console.log(weatherData);
 
-    // weatherData.data.forEach((item, idx) => {
-    //     const weatherObjData = new Weather(item);
-    //     res.send(weatherObjData);
-    //     console.log('heloooooo', item);
-    // });
-    for (let i = 0; i < weatherData.data.length; i++) {
-        const weatherObjData = new Weather(weatherData.data[i]);
-        res.send(weatherObjData);
+    let arr = [];
+    weatherData.data.forEach((item, idx) => {
+        const weatherObjData = new Weather(item);
+        // res.send(weatherObjData);
+        arr.push(weatherObjData);
         console.log('heloooooo', item);
-    }
+    });
+    res.send(arr);
 });
 
 function Weather(weatherData) {
-    // [{
-    //       "forecast": "Partly cloudy until afternoon.",
+    // [{   "forecast": "Partly cloudy until afternoon.",
     //       "time": "Mon Jan 01 2001"
     //     },
     //     {
@@ -71,7 +68,7 @@ function Weather(weatherData) {
     //       "time": "Tue Jan 02 2001"
     //     },... ]
     this.forecast = weatherData.weather.description;
-    this.time = weatherData.valid_date;
+    this.time = new Date(weatherData.valid_date).toDateString();
 }
 
 app.get('*', (req, res) => {
