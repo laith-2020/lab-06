@@ -1,5 +1,8 @@
 # lab-06
 
+| Report Name | BranchName | ReportType | Report-Created-At |
+| :---------: | :--------: | :--------: | :---------------: |
+| laith  | laith | laith | laith |
 
 Getting Started
 First of all you need to have node.js installed on your machine
